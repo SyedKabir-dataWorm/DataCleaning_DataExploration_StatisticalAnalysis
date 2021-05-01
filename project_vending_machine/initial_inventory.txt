@@ -1,0 +1,7 @@
+coke 2 20
+juice 2 25
+tea 2.5 30
+coffee 2.5 20
+fanta 2 0
+milk .5 50
+sugar .5 50
