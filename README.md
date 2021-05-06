@@ -6,8 +6,7 @@ Sanity checks, missing value handling, impossible values handling, outlier detec
 # details of the data
 The data set is provided by Basketball-Reference.com1(1https://www.basketball-reference.com/leagues/NBA 2021 advanced.html),
 which contains stats of 492 NBA (National Basketball Association) players during 2020-2021 season. Note that a few
-players appeared more than once in the data since they played for dierent teams in the
-same season. 
+players appeared more than once in the data since they played for different teams in the same season. 
 
 The description of each column in this data set is given below.
 • Rk { Rank
@@ -23,11 +22,11 @@ GSW, OKC, MIN, DET, DAL, IND, ATL, PHI, BOS, HOU.
 • FGA { Field Goal Attempts, the number of field goal attempts, including 2-Point
 Field Goal Attempts and 3-Point Field Goal Attempts.
 • FG% { Field Goal Percentage, equals to FG
-• 3P { 3-Point Field Goals, the number of 3-Point Field Goals. A 3-point eld goal
+• 3P { 3-Point Field Goals, the number of 3-Point Field Goals. A 3-point field goal
 can be scored 3 points.
 • 3PA { 3-Point Field Goal Attempts, the number of 3-Point Field Goal Attempts.
 • 3P% { 3-Point Field Goal Percentage, equals to 3P
-• 2P { 2-Point Field Goals, the number of 2-Point Field Goals. A 2-point eld goal
+• 2P { 2-Point Field Goals, the number of 2-Point Field Goals. A 2-point field goal
 can be scored 2 points.
 • 2PA { 2-point Field Goal Attempts, the number of 2-Point Field Goal Attempts.
 • 2P% { 2-Point Field Goal Percentage, equals to 2P
