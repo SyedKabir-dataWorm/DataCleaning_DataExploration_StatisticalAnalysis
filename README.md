@@ -20,7 +20,7 @@ GSW, OKC, MIN, DET, DAL, IND, ATL, PHI, BOS, HOU.
 • GS { Games Started, the number of games played as a starter.
 • MP { Minutes Played, regardless of overtime, each game has 48 minutes.
 • FG { Field Goals, all Field Goals including 2-Point Field Goals and 3-Point Field Goals.
-• FGA { Field Goal Attempts, the number of eld goal attempts, including 2-Point
+• FGA { Field Goal Attempts, the number of field goal attempts, including 2-Point
 Field Goal Attempts and 3-Point Field Goal Attempts.
 • FG% { Field Goal Percentage, equals to FG
 • 3P { 3-Point Field Goals, the number of 3-Point Field Goals. A 3-point eld goal
@@ -34,9 +34,9 @@ can be scored 2 points.
 • FT { Free Throws, the number of Free Throws, one free throw goal worth 1 point.
 • FTA { Free Throw Attempts, the number of Free Throw Attempts.
 • FT% { Free Throw Percentage, equals to FT
-• ORB { Oensive Rebounds, the number of Oensive Rebounds.
+• ORB { Ofensive Rebounds, the number of Ofensive Rebounds.
 • DRB { Defensive Rebounds, the number of Defensive Rebounds.
-• TRB { Total Rebounds, the number of Oensive Rebounds and Defensive Rebounds.
+• TRB { Total Rebounds, the number of Ofensive Rebounds and Defensive Rebounds.
 • AST { Assists, the number of Assists.
 • STL { Steals, the number of Steals.
 • BLK { Blocks, the number of Blocks.
@@ -50,7 +50,7 @@ must be less than 2000.
 # details of the task:
 1) Clean the data. Remove anamolies, handle missing values, outliers.
 2) Explore the players' total points: Please analyze the composition of the total points
-of the top ve players with the most points.
+of the top five players with the most points.
 3) Assuming that the data collector makes an entry error when collecting data, it can
 be ensured that the error occurred in the 3P, 3PA and 3P% columns, but it is not
 sure which player's information the error lies on. Please try to explore the error by
