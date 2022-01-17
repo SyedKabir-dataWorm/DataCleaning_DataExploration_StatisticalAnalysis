@@ -18,7 +18,7 @@ Here are the  packages used in this report.
 ```{r echo=TRUE,rmessage=FALSE,warning= FALSE}
 # This is the R chunk for the required packages
 
-setwd("C:/Users/User/OneDrive/Desktop/assign2_wran") 
+# setwd("C:/Users/User/OneDrive/Desktop/assign2_wran") 
 library(readr) 
 library(dplyr)
 library(magrittr)
@@ -53,30 +53,47 @@ library(infotheo)
 ## Data 
 
 * Data Souce:  data.gov.au
+
 The page is :Australian Road Deaths Database (ARDD)
-link: https://data.gov.au/data/dataset/5b530fb8-526e-4fbf-b0f6-aa24e84e4277, viewed on 2nd of October,2020.
-* Two csv files named "ardd_fatalities" and "ardd_fatal_crashes" are the source data. Those are downloadable by just by clicking 'explore' option and then clicking 'Go to Resource' across both of "ARDD Fatalities August 2020" and "ARDD Fatal Crashes August 2020" options. 
 
-* "ardd_fatalities" data is about fatalities: each record is a killed person in a road accident. The data set has 23 variables and 51643 observations. However this report will work with 12 out of those 23 variables.  
+link: https://data.gov.au/data/dataset/5b530fb8-526e-4fbf-b0f6-aa24e84e4277, first viewed on 2nd of October 2020, latest viewed on 17th of January 2022.
 
-* "ardd_fatal_crashes" data is about Crashes: each record is a fatal crash which caused fatality or not. The data set has 20 variables and 46455 observations, however this report will work with only 2 out of those 20 variables. Because those are not necessary for this analysis.
+* Two csv files named "ardd_fatalities" and "ardd_fatal_crashes" are the source data. Those are downloadable by just by clicking 'explore' option and then clicking 'Go to Resource' across both of "ARDD Fatalities December 2021" and "ARDD Fatal Crashes December 2021" options.These are live data, so the data is changing in every year.
+
+* "ardd_fatalities" data is about fatalities: each record is a killed person in a road accident. The data set has 23 variables and 53129 observations (on December 2021). However this report will work with 12 out of those 23 variables.  
+
+* "ardd_fatal_crashes" data is about Crashes: each record is a fatal crash which caused fatality or not. The data set has 20 variables and 47836 observations(on December 2021), however this report will work with only 2 out of those 20 variables. Because those are not necessary for this analysis.
 
 
 
 ### Variable Description:
+
     . Crash ID : National crash identifying number consisting of 8-characters, unique to each fatal crash.This is a common variable in both data-sets.
+    
     . State: Australian Jurisdiction. A categorical variable representing abbreviation for each state/territory.
+    
     . Month: An integer variable representing month of crash. 
+    
     . Year: An integer variable representing year of crash.The data set covers the year from 1989 to 2020. However this report will work on years since 2015 to 2020
+    
     . Crash Type: Imported as a Character variable.A crash is coded as a Pedestrian crash if a pedestrian was killed; otherwise, the number of vehicles involved.Three types of Observation: Pedestrian, Single, Multiple.
+    
     . Speed Limit: An integer. Posted speed limit at location of crash.
+    
     . Age: Integer varaiable. Age of killed person (by years)
+    
     . Road User: A catagorical type variable representing the types of road user of killed person. The observations are of this types:Driver,Passenger, Pedestrian, Motorcycle rider, Motorcycle pillion passenger, Pedal cyclist(Note: includes pillion passenger).
+    
     . Christmas Period: Character Type. Indicates if crash occurred during the 12 days commencing on December 23rd. Values are Yes/ No.
+    
     . Easter Period: Character Type. Indicates if crash occurred during the 5 days commencing on the Thursday before Good Friday. Values are Yes/No.
+    
     . Day of week: Character variable. Indicates if crash occurred during the weekday or weekend.(Note: ‘Weekday’ refers to 6am Monday through to 5:59pm Friday)
+    
     . Time of day: Character variable. Indicates if crash occurred during the day or night (Note: ‘Day’ refers to 6am through to 5:59 pm).
+    
     . Number Fatalities:Integer type. This variable is taken from second data set ("ardd_fatal_crashes"). Number of killed persons(fatalities) in the crash.
+    
     . The remaining variables, superfluous to this analysis, were dropped after reading the file.
     
 
@@ -87,18 +104,28 @@ link: https://data.gov.au/data/dataset/5b530fb8-526e-4fbf-b0f6-aa24e84e4277, vie
 ```{r echo=TRUE,rmessage=FALSE,warning= FALSE}
 
 # Importing first data set from working directory.Then subsetting data selecting all rows and 12 number of columns.
-fatal_1<-read_csv("ardd_fatalities.csv")
+
+# fatal_1<-read_csv("https://data.gov.au/data/dataset/5b530fb8-526e-4fbf-b0f6-aa24e84e4277/resource/fd646fdc-7788-4bea-a736-e4aeb0dd09a8/download/ardd_fatalities_dec2021.csv")
+
+fatal_1 <- read_csv("ardd_fatalities.csv") # data retrieved on 2020
+
 fatal<-fatal_1[,c("Crash ID","State","Month","Year" ,"Crash Type","Speed Limit","Road User","Christmas Period","Easter Period","Day of week" ,"Time of day","Age")]
 
 head(fatal)
 
 # Importing Second data set from working directory.Then subsetting data selecting all rows and 2 number of columns.
-crash_1<- read_csv("ardd_fatal_crashes.csv")
+
+# crash_1<- read_csv("https://data.gov.au/data/dataset/5b530fb8-526e-4fbf-b0f6-aa24e84e4277/resource/d54f7465-74b8-4fff-8653-37e724d0ebbb/download/ardd_fatal_crashes_dec2021.csv")
+
+crash_1 <- read_csv("ardd_fatal_crashes.csv")   # data retrieved on 2020
+
 crash<-crash_1[,c("Crash ID","Number Fatalities")]
+
 head(crash)
 
 # Joining `fatal` object with `crash` oject to produce the ultimate data set for this analysis. 
 # Joined object is named as `fatal_crash`. Only the years since 2015 to 2020 is filtered for the analysis as the report will focus on latest data.
+
 fatal_crash<-fatal%>%left_join (crash, by="Crash ID")%>%filter(Year==2015:2020)
 head(fatal_crash)
 ```
