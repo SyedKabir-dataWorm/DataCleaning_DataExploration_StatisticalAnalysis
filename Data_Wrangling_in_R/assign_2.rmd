@@ -1,17 +1,15 @@
 ---
-title: "MATH2349 Data Wrangling"
-author: "SYED NAZMUL KABIR, s3874060"
-subtitle: Assignment 2
+title: "University project: MATH2349 Data Wrangling"
+author: "SYED NAZMUL KABIR"
+subtitle: Data wrangling assignment
 output:
   html_document:
-    df_print: paged
-  pdf_document: default
-  html_notebook: default
+    keep_md: true
+    
 ---
 
 
 ## Required packages 
-
 
 Here are the  packages used in this report. 
 
@@ -30,22 +28,17 @@ library(infotheo)
 
 ```
 
-
 ## Executive Summary 
 
   Every year, many Australians lose their lives on roads. There are many factors causing road accidents. `Australian Road Death Database` provides invaluable information for finding out genuine causes of road accidents. Prior driving to the depth of analysis on root causes, it is of great importance to pre-process the data to get clean and tidier ones for further analysis. This report will emphasis on pre-processing activities of the data related to the road accidents in Australia.
   
-  
   The initial pre-processing consists of importing two data-sets and joining those by using appropriate keys. The merged data-set is then inspected thoroughly to figure out the attributes and data types of all important variables following by necessary conversion of classes of variables.
   
-  
   In middle stage, data is tidied up by consolidating various festival periods in to a single column. To facilitate the future analysis, a new column is being created from the existing data with a focus on illegal driving based on age.
-  
-  
+   
   Next, data was thoroughly scanned for missing values including special values and inconsistencies. Imputation as well as removal techniques are used to neutralize those problems. 
   
   Later on, outliers for all numeric variables are detected using Turkey’s method. Reasons of choosing this particular method is also evaluated. Capping and removal techniques are being applied to get rid of those outliers. In all cases, problematic data are being replaced by clean, outlier free, capped data within the working data-set.  
-  
   
   In final section, histogram of Age variable reflects the data nature of non-symmetric distribution. Different mathematical operations are applied as well as various transformation techniques are used to achieve normality characteristics of Age variable.
   
@@ -112,8 +105,6 @@ The following chunk is to have a summarized view on types of variables and data 
 # This is the R chunk for Understanding variable types.
 str(fatal_crash)
 ```
-
-
 
 ### Change of Class of Variables:
 
@@ -183,7 +174,6 @@ head(fatal_crash)
 
 ##	Tidy & Manipulate Data I 
 
-
 Christmas.Period and Easter.Period are just few days in two separate months of a year.So value of those two column is "No" except christmas and easter time. They can be combined in a single variable named Festival.Thus the wide format of data is converted to longer format and more tidy.  
 ```{r}
 # This is the R chunk for the Tidy & Manipulate Data I 
@@ -196,7 +186,6 @@ head(fatal_tidy)
 
 
 ##	Tidy & Manipulate Data II 
-
 
 Age range is important to be a legal-driver. Proper range of age is aprecondition to be a legal driver. Any under-aged or over-aged drivers should be illegal. Illegal-driving might be an important cause of accidents too. So a new variable is formed named as illegal_driver based on age.
 
@@ -216,7 +205,6 @@ head(fatality)
 
 
 ##	Scan I 
-
 
 ```{r}
 # This is the R chunk for the Scan I
@@ -298,7 +286,6 @@ So all missing values are being handled appropriately.
 
 
 ##	Scan II
-
 
  Before choosing appropriate method of outlier-detection,we are checking normality of data.
   
@@ -451,8 +438,6 @@ labs( title = "Age of the killed person in different crashes at various times",x
 p3
 
 ```
-
-
 
 So, all old outliers are being removed. Two new outliers are being formed and that is quite normal. 
 
