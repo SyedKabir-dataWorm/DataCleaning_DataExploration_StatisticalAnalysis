@@ -668,7 +668,7 @@ shapiro.test(fatality$`Speed Limit` )
 boxplot(fatality$`Speed Limit`, main=" Box Plot for Speed Limit", ylab = "Speed limit of road(km/hr)")
 ```
 
-![](assign_2_revised_files/figure-html/unnamed-chunk-23-1.png)<!-- -->
+![](assign_2_files/figure-html/unnamed-chunk-23-1.png)<!-- -->
     
     
   So, in univariate relationship, Speed Limit variable is not showing any outlier. Now a bi-variate relationship (speed limit and crash type) is being checked.
@@ -684,7 +684,7 @@ coord_flip() + theme(legend.title=element_blank())
 p11
 ```
 
-![](assign_2_revised_files/figure-html/unnamed-chunk-24-1.png)<!-- -->
+![](assign_2_files/figure-html/unnamed-chunk-24-1.png)<!-- -->
 
 
 
@@ -751,7 +751,7 @@ coord_flip() + theme(legend.title=element_blank())
 p5
 ```
 
-![](assign_2_revised_files/figure-html/unnamed-chunk-28-1.png)<!-- -->
+![](assign_2_files/figure-html/unnamed-chunk-28-1.png)<!-- -->
 
 
 
@@ -765,7 +765,7 @@ p5
 boxplot(fatality$Age, main=" Box plot of age of dead person in accidents", ylab = "Age(years)")
 ```
 
-![](assign_2_revised_files/figure-html/unnamed-chunk-29-1.png)<!-- -->
+![](assign_2_files/figure-html/unnamed-chunk-29-1.png)<!-- -->
 
 
 * No outlier is showing for Age variable as a univariate system.
@@ -785,7 +785,7 @@ labs( title = "Age of the killed person in different types of crashes",x = "Age(
 p33
 ```
 
-![](assign_2_revised_files/figure-html/unnamed-chunk-30-1.png)<!-- -->
+![](assign_2_files/figure-html/unnamed-chunk-30-1.png)<!-- -->
 
 
 
@@ -848,7 +848,7 @@ labs( title = "Age of the killed person in different crashes at various times",x
 p3
 ```
 
-![](assign_2_revised_files/figure-html/unnamed-chunk-33-1.png)<!-- -->
+![](assign_2_files/figure-html/unnamed-chunk-33-1.png)<!-- -->
 
 
 
@@ -866,7 +866,7 @@ hist(fatality_final $Age,col="grey",
  xlab="Age (years)", main="Histograme of Age variable without transformation", breaks=15)
 ```
 
-![](assign_2_revised_files/figure-html/unnamed-chunk-34-1.png)<!-- -->
+![](assign_2_files/figure-html/unnamed-chunk-34-1.png)<!-- -->
 
 
   So, the histogram is showing right skewness with very fat, long right tail. According to literature, log, natural log, square root, reciprocal, boxcox transformation should be effective to reduce the right skewness.
@@ -913,7 +913,7 @@ boxcox_fatality<- BoxCox(fatality_final$Age, lambda = "auto")
 hist(boxcox_fatality, xlab="Age (years)", main="Histograme of Age with BoxCox transformation", breaks=15)
 ```
 
-![](assign_2_revised_files/figure-html/unnamed-chunk-36-1.png)<!-- -->
+![](assign_2_files/figure-html/unnamed-chunk-36-1.png)<!-- -->
 
 ```r
 par(mfrow=c(1,1))
@@ -1006,7 +1006,7 @@ BN_obj_1
 hist(BN_obj_1$x.t,xlab="Age (years)", main="Histograme of Age with best normalisation transformation", breaks=15)
 ```
 
-![](assign_2_revised_files/figure-html/unnamed-chunk-40-1.png)<!-- -->
+![](assign_2_files/figure-html/unnamed-chunk-40-1.png)<!-- -->
 
   So, data of Age variable has been transformed that generates almost symmetrical distribution using bestNormalize package. 
 
