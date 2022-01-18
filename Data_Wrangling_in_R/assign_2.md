@@ -2,9 +2,8 @@
 title: "University project: MATH2349 Data Wrangling"
 author: "SYED NAZMUL KABIR"
 subtitle: Data wrangling assignment
-output: 
-  html_document:
-    keep_md: true
+rmarkdown::github_document
+
 ---
 
 
