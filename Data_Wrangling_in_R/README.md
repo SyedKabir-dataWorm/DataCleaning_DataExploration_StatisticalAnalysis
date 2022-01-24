@@ -1,9 +1,9 @@
 The purpose of this assignment is to do data wrangling and do appropriate data transformation.
 
-The datasets are taken for this task is a real data. 
-Data Souce: data.gov.au 
-The page is :Australian Road Deaths Database (ARDD) 
-link: https://data.gov.au/data/dataset/5b530fb8-526e-4fbf-b0f6-aa24e84e4277, viewed on 2nd of October,2020.
+- The datasets are taken for this task is a real data. 
+- Data Souce: data.gov.au 
+- The page is :Australian Road Deaths Database (ARDD) 
+- link: https://data.gov.au/data/dataset/5b530fb8-526e-4fbf-b0f6-aa24e84e4277, viewed on 2nd of October,2020.
 
 
 ## Minimum Requirements for the Data sets for this task
