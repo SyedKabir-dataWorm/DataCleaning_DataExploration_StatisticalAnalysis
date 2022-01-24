@@ -14,26 +14,7 @@ output:
 ---
 
 
-```{r setup, include=FALSE}
-# Use this chunk to quietly load your pacakges
 
-knitr::opts_chunk$set(
-	fig.align = "center",
-	message = FALSE,
-	warning = FALSE
-)
-# Packages loaded in this chunk will not appear in the presentation. 
-
-library(ggplot2) # Useful for creating plots
-library(dplyr)  # Useful for data maipulation
-library(knitr) # Useful for creating nice tables
-library(readr)
-library(magrittr)
-library(tidyr)
-library(car)
-library(scales)
-
-```
 
  
 # Introduction
@@ -79,38 +60,74 @@ R-pub link: https://rpubs.com/kabir_data_worm/680654
 - At first, importing data from working directory with necessary sub-setting and filtering. 
 - Checking the attributes of data-frame and class of each variable.
 
-```{r}
+
+```r
 life_expectancy<-read_csv("Life Expectancy Data.csv")%>% select(Country,Year,Status, `Life expectancy`)%>%filter(Year==c(2011:2015))
 str(life_expectancy)
 ```
+
+```
+## tibble [185 x 4] (S3: tbl_df/tbl/data.frame)
+##  $ Country        : chr [1:185] "Afghanistan" "Albania" "Algeria" "Angola" ...
+##  $ Year           : num [1:185] 2013 2011 2014 2012 2015 ...
+##  $ Status         : chr [1:185] "Developing" "Developing" "Developing" "Developing" ...
+##  $ Life expectancy: num [1:185] 59.9 76.6 75.4 56 76.4 76 73.9 82.7 88 72.7 ...
+```
 - Changing class of "Status" variable to a factor and defining the levels. 
-```{r}
+
+```r
 life_expectancy$Status<-factor(life_expectancy$Status,levels=c("Developing","Developed"))
 levels(life_expectancy$`Status`)
+```
+
+```
+## [1] "Developing" "Developed"
 ```
 
 
 # Data Cont.(Handling Missing Values)
 - Checking missing values: NA, nan, special values. Output is showing 2 NAs in Life expectancy. 
-```{r}
+
+```r
 is.specialorNA <- function(x){if (is.numeric(x)) (is.infinite(x) | is.nan(x) | is.na(x))}
 sapply(life_expectancy, function(y)sum(is.specialorNA(y)))
 ```
+
+```
+##         Country            Year          Status Life expectancy 
+##               0               0               0               2
+```
 - Finding location of missing values. Removing 2 missing values as sample size for developing countries is large(153).
-```{r}
+
+```r
 life_expectancy[!complete.cases(life_expectancy),]
 ```
 
-```{r}
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Status"],"name":[3],"type":["fct"],"align":["left"]},{"label":["Life expectancy"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Nauru","2":"2013","3":"Developing","4":"NA"},{"1":"Saint Kitts and Nevis","2":"2013","3":"Developing","4":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+
+
+```r
 life_expectancy<-life_expectancy%>%na.omit()
 ```
 
 # Descriptive Statistics and Visualisation
 
-```{r}
+
+```r
 life_expectancy%>%group_by(Status)%>%summarise(Min = min(`Life expectancy`,na.rm = TRUE),Q1 = round(quantile(`Life expectancy`,probs = .25,na.rm = TRUE),2), Median = round(median(`Life expectancy`, na.rm = TRUE),2), Q3 = round(quantile(`Life expectancy`,probs = .75,na.rm = TRUE),2),Max = max(`Life expectancy`,na.rm = TRUE),IQR=IQR(`Life expectancy`,na.rm = TRUE),Mean = round(mean(`Life expectancy`, na.rm = TRUE),2),SD = round(sd(`Life expectancy`, na.rm = TRUE),2), IQR = IQR(`Life expectancy`, na.rm = TRUE), Range= Max-Min,n = n(),Missing = sum(is.na(`Life expectancy`))) -> table1
 knitr::kable(table1)
 ```
+
+
+
+|Status     |  Min|    Q1| Median|    Q3| Max|   IQR|  Mean|   SD| Range|   n| Missing|
+|:----------|----:|-----:|------:|-----:|---:|-----:|-----:|----:|-----:|---:|-------:|
+|Developing | 48.1| 63.15|   71.0| 75.05|  85| 11.90| 69.12| 7.73|  36.9| 151|       0|
+|Developed  | 73.4| 78.47|   81.4| 82.53|  88|  4.05| 80.74| 3.67|  14.6|  32|       0|
 ## Observations
 - Life expectancy of developed countries is at least 10 years more than that of developing countries considering both mean and median values.
 - Median value of life expectancy for developing countries(71) is lower than minimum value (73.4) of life expectancy of developed countries.
@@ -120,30 +137,50 @@ knitr::kable(table1)
 
 
 # # Decsriptive Statistics: Boxplot of Life Expectancy 
-```{r fig1, fig.height = 4, fig.width = 7, fig.align = "center",size = 'tiny'}
+
+```r
 qplot(`Life expectancy`,Status,data=life_expectancy,geom='boxplot')+stat_summary(fun.y=mean,shape=1,col='red',geom='point')+labs(title=" Boxplot of 'Life expectancy' of Developing and Developed Countries", x = "Life Expectancy (years)", y = "Types of Countries")+ geom_jitter(alpha = 1/8)
 ```
+
+<img src="life_expectancy_presentation_files/figure-slidy/fig1-1.png" style="display: block; margin: auto;" />
 So there is no outlier. Red points represent mean value that differs more than 10 years in between two types of countries.Box-plot shows that life expectancy varies a lot in developing countries compared to developed countries. Developed countries have higher life expectancy than developing countries.
 
 # Decsriptive Statistics Cont.(Visualisation)
 - Life expectancy distribution for developing countries is negatively skewed with a fat left tail, right tail is slim. 
 - Distribution for developed countries is showing characteristics of standard normal distribution relatively more.
-```{r size="tiny",fig2, fig.height = 4, fig.width = 8, fig.align = "center"}
+
+```r
 ggplot(life_expectancy , aes(x=`Life expectancy`, fill=Status))+geom_histogram(alpha=0.5,position = 'identity', colour='black',binwidth =1.8 )+ labs(title="    Histogram of Life Expectancy of Developing & Developed Countries",x="Life Expectancy (Years)", y="Frequency")
 ```
 
+<img src="life_expectancy_presentation_files/figure-slidy/fig2-1.png" style="display: block; margin: auto;" />
+
 #  Visualisation:QQ Plot for Developing Countries
 
-```{r,fig3, fig.height = 4, fig.width = 7, fig.align = "center"}
+
+```r
 life_developing<-life_expectancy%>%filter(Status=="Developing")
 life_developing$`Life expectancy`%>%car::qqPlot(dist="norm",ylab="Life expectancy(years)",main = "Developing Countries", col = "red")
 ```
 
+<img src="life_expectancy_presentation_files/figure-slidy/fig3-1.png" style="display: block; margin: auto;" />
+
+```
+## [1] 120  30
+```
+
 
 #  Visualisation:QQ Plot for Developed Countries
-```{r,fig4, fig.height = 4, fig.width = 7, fig.align = "center"}
+
+```r
 life_developed<-life_expectancy%>%filter(Status=="Developed")
 life_developed$`Life expectancy`%>%qqPlot(dist="norm",ylab="Life expectancy(years)",main = "Developed Countries", col = "red")
+```
+
+<img src="life_expectancy_presentation_files/figure-slidy/fig4-1.png" style="display: block; margin: auto;" />
+
+```
+## [1] 16  2
 ```
 
 # Visualisation:Important features of data visualisation:
