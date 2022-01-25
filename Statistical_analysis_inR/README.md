@@ -25,34 +25,32 @@ among developping and developed countries using hypothesis testing.
          e)  A new window will open 
          f)  Navigate by pressing < or > arrows.
 
-4) Major Contents :
-
-	The presentation is composed of the following sections:
+4) Major Contents :The presentation is composed of the following sections:
 	
-	4.1) Presentation title and group/individual details [Plain text]: 	
-	4.2) RPubs link information  [RPubs link]: 
-	4.3) Introduction [Plain text]: 
-	 	- The introduction provides a brief background to the problem, defines important terms, and leads to a strong rationale.
-	4.4) Problem Statement [Plain text]: 
-		- States the overall problem/question driving the investigation. 
-		- Summarises how statistics is used to solve the problem or answer the business questions.
-	4.5) Data [Plain text]: 
-		- Explains how data is collected. There is enough detail here so that someone else could replicate the data collection. 
-		- Listing and explanation of the important variables is provided.
-	4.6) Descriptive Statistics and Visualisation [Plain text & R code & Output]: 
-		- Summarisation of the important variables in the investigation is performed. 
-		- Uses visualisation to highlight interesting features of the data and tell the overall story. 
-		- Explainantion of how data issues (if any), e.g. missing data and outliers are being dealt with.
-	4.7) Hypothesis Testing [Plain text & R code & Output]: 
-		- Applying an appropriate hypothesis test for the investigation. 
-		- Stating the hypotheses and checking any assumptions. 
-		- Reporting the appropriate values and interpreting the results.
-	4.8) Discussion [Plain text]: 
-		- Discussing the major findings of the investigation. 
-		- Discussing any strengths and limitations. 
-		- Proposing directions for future investigations.  
-		- Mentioned What is the one take home message the reader should leave with?
-	4.9) References [Plain text]:
+  * Presentation title and group/individual details [Plain text]: 	
+  * RPubs link information  [RPubs link]: 
+  * Introduction [Plain text]: 
+    * The introduction provides a brief background to the problem, defines important terms, and leads to a strong rationale.
+  * Problem Statement [Plain text]: 
+    * States the overall problem/question driving the investigation. 
+    * Summarises how statistics is used to solve the problem or answer the business questions.
+  * Data [Plain text]: 
+    * Explains how data is collected. There is enough detail here so that someone else could replicate the data collection. 
+    * Listing and explanation of the important variables is provided.
+  * Descriptive Statistics and Visualisation [Plain text & R code & Output]: 
+    * Summarisation of the important variables in the investigation is performed. 
+    * Uses visualisation to highlight interesting features of the data and tell the overall story. 
+    * Explainantion of how data issues (if any), e.g. missing data and outliers are being dealt with.
+  * Hypothesis Testing [Plain text & R code & Output]: 
+    * Applying an appropriate hypothesis test for the investigation. 
+    * Stating the hypotheses and checking any assumptions. 
+    * Reporting the appropriate values and interpreting the results.
+  * Discussion [Plain text]: 
+    * Discussing the major findings of the investigation. 
+    * Discussing any strengths and limitations. 
+    * Proposing directions for future investigations.  
+    * Mentioned What is the one take home message the reader should leave with?
+  * References [Plain text]:
 
 
 
