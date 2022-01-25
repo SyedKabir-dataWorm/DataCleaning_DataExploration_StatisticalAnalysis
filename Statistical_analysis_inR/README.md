@@ -29,30 +29,30 @@ among developping and developed countries using hypothesis testing.
 
 	The presentation is composed of the following sections:
 	
-	a)	Presentation title and group/individual details [Plain text]: 	
-	 	RPubs link information  [RPubs link]: 
-	b)	- Introduction [Plain text]: 
-		- The introduction provides a brief background to the problem, defines important terms, and leads to a strong rationale.
-	c)	Problem Statement [Plain text]: 
+	4.1) Presentation title and group/individual details [Plain text]: 	
+	4.2) RPubs link information  [RPubs link]: 
+	4.3) Introduction [Plain text]: 
+	 	- The introduction provides a brief background to the problem, defines important terms, and leads to a strong rationale.
+	4.4) Problem Statement [Plain text]: 
 		- States the overall problem/question driving the investigation. 
 		- Summarises how statistics is used to solve the problem or answer the business questions.
-	d)	Data [Plain text]: 
+	4.5) Data [Plain text]: 
 		- Explains how data is collected. There is enough detail here so that someone else could replicate the data collection. 
 		- Listing and explanation of the important variables is provided.
-	e)	Descriptive Statistics and Visualisation [Plain text & R code & Output]: 
+	4.6) Descriptive Statistics and Visualisation [Plain text & R code & Output]: 
 		- Summarisation of the important variables in the investigation is performed. 
 		- Uses visualisation to highlight interesting features of the data and tell the overall story. 
 		- Explainantion of how data issues (if any), e.g. missing data and outliers are being dealt with.
-	f)	Hypothesis Testing [Plain text & R code & Output]: 
+	4.7) Hypothesis Testing [Plain text & R code & Output]: 
 		- Applying an appropriate hypothesis test for the investigation. 
 		- Stating the hypotheses and checking any assumptions. 
 		- Reporting the appropriate values and interpreting the results.
-	g)	Discussion [Plain text]: 
+	4.8) Discussion [Plain text]: 
 		- Discussing the major findings of the investigation. 
 		- Discussing any strengths and limitations. 
 		- Proposing directions for future investigations.  
 		- Mentioned What is the one take home message the reader should leave with?
-	h)	References [Plain text]:
+	4.9) References [Plain text]:
 
 
 
