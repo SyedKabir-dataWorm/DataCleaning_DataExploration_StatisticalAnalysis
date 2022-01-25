@@ -27,10 +27,10 @@ among developping and developed countries using hypothesis testing.
 
 4) Major Contents :
 
-	The presentation is composed of the following sections. 
-
+	The presentation is composed of the following sections:
+	
 	a)	Presentation title and group/individual details [Plain text]: 	
-		RPubs link information  [RPubs link]: 
+	 	RPubs link information  [RPubs link]: 
 	b)	- Introduction [Plain text]: 
 		- The introduction provides a brief background to the problem, defines important terms, and leads to a strong rationale.
 	c)	Problem Statement [Plain text]: 
