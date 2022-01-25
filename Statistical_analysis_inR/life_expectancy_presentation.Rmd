@@ -157,3 +157,101 @@ life_developed$`Life expectancy`%>%qqPlot(dist="norm",ylab="Life expectancy(year
 - Both QQ plot shows 'S' patterns. QQ plot for developing countries clearly shows left-skewness. Many data falls outside of dotted lines as well. So this distribution may not be normal.  
 
 - In case of QQ plot for developed countries, we can assume normality considering 95% CI of normal quantiles. Because almost all of the data falls inside to the dotted lines.
+
+# Hypothesis Testing: Normality Checking
+- QQ plot shows that data is not normal for developing countries. However, it is a close call. For confirmation, we are checking normality characteristics of data using Shapiro-Wilk's method.
+```{r}
+shapiro.test(life_developing$`Life expectancy`)
+shapiro.test(life_developed$`Life expectancy`)
+
+```
+- As p-value<.05, Data is not normally distributed for developing countries. For developed countries, P-value>.05, So data is normally distributed 
+
+
+# Hypothesis Testing:cont.
+- We can still go for t-test following central limit theorem as sample size is larger than 30.
+- Prior proceeding to t-test, we are confirming homogeneity of variances of life expextancy in between developing and developed countries using Levene's Test.
+
+## Levene's Test For Homogeneity Of Variance.
+- The following statistical hypotheses is used to verify equal variance. 
+- Null Hypothesis, denoted as $H_0$ assumes that there is equality in variances of Life expectancy parameter in between developing and developed countries.  
+- Alternate Hypothesis, denoted as $H_A$ assumes non-existence of homogeneity in variances of Life expectancy parameter in between developing and developed countries. 
+- Here, σ1 and σ2 refer to the  variance in life expectancy of developing and developed countries respectively.
+
+$$H_0: \sigma_1^2 = \sigma_2^2 $$
+
+$$H_A: \sigma_1^2 \ne \sigma_2^2$$
+
+
+# Levene's Test, continuing....   
+
+Here is the R code for Levene’s test:
+
+```{r}
+leveneTest(`Life expectancy` ~ as.factor(Status), data = life_expectancy)%>%knitr::kable()
+```
+
+## Explanation:
+- The p-value for the Levene’s test of equal variance for Life expectancy between developing and developed countries is less than 0.001; i.e p-value<0.05 . So, Levene’s test is statistically significant to reject null hypothesis. F=19.56,p<0.001 
+- That means equal variance for Life expectancy between developing and developed countries is not existing. 
+- So, for further analysis Welch Two-sample t-test - assuming unequal variance is necessary.
+
+# Welch Two Sample t-test: Unequal Variance
+- Welch two-sample(independent) t-test assuming unequal variance is used to determine if the mean life expectancy of developing countries are significantly different from developed countries.The following statistical hypotheses are used:
+- Null hypothesis: denoted as $H_0$ assumes that the difference between means of Life expectancy of developed and developing countries is 0.
+- Alternate hypothesis:denoted as $H_A$ assumes that the difference between means of Life expectancy of developed and developing countries is not 0. Here are the mathematical representations of two hypothesis.
+   
+   Here, $\mu_1$ and $\mu_2$ refers to the  mean value of life expectancy of developing and developed countries.
+
+
+$$H_0: \mu_1 - \mu_2=0 $$
+
+$$H_A: \mu_1 - \mu_2\ne0$$
+
+- The output of the R-code of next slide is showing the details of "Welch two-sample unequal varience t-test" for this analysis.
+
+# Welch Two Sample t-test:Cont... 
+
+```{r}
+t.test(`Life expectancy` ~ as.factor(Status), data = life_expectancy,var.equal = FALSE, alternative = "two.sided")
+```
+## Decision:
+  + The result of Welch Two Sample (independent) t-test shows that p-value is less than 0.001, i.e p-value<.05  
+  + 95% CI [-13.41 -9.82] is not catching null hypothesis. 
+  + So two-sample t-test assuming unequal variance finds statistically significant results to reject null hypothesis. 
+
+# Explanation of Hypothesis Test
+   - Welch two-sample t-test is used to test for a significant difference between the mean life expectancy of developing and developed countries. 
+   - While the life expectancy for developing countries exhibits evidence of non-normality upon inspection of the normal Q-Q plot and results of Shapiro-Wilk's test , the central limit theorem ensures that the t-test can be applied due to the large sample size in each group. 
+   - The Levene’s test of homogeneity of variance indicates that equal variance can not be assumed. 
+   - The results of the two-sample t-test assuming unequal variance finds a statistically significant difference between the mean life expectancy of developing and developed countries, t(df=98)= 12.841, p < 0.001, 95% CI for the difference in means [-13.41  -9.82]. 
+   - The results of the investigation suggest that developed countries have significantly higher average life expectancy than developing countries.
+
+
+
+# Discussion
+
+- Descriptive statistics and visualizations shows significant difference in life expectancy in between developing and developed countries. On hypothesis testing, it is confirmed that null hypothesis does not stand, hence rejected.
+- Strength of this analysis:
+    + No outliers, very few missing values.
+    + Very consistent results across descriptive statistics, visualisations and hypothesis tests.
+- Limitation of the analysis:
+    + The investigation does not count the impact of other variables on life expectancy such as genetics, war, natural calamities, diseases etc.
+    + Sampling method of the data is not mentioned by the data source.
+- Future investigation may take into account:
+    + clear mentioning of sampling method.
+    + all influential factors (economy, genetics,geography, war) of life expectancy.
+- Inspite of recent progress on life expectancy in developing countries,this analysis reveals that developed countries still have statistically significant higher life expectancy than developing countries.
+
+
+# References
+
+- Kaggle. *Life Expectancy (WHO),
+Statistical Analysis on factors influencing Life Expectancy*,retrieved on 28 September, 2020 from
+   https://www.kaggle.com/kumarajarshi/life-expectancy-who?select=Life+Expectancy+Data.csv 
+
+- Khan, A., Khan, S., & Khan, M. (2010). *Factors effecting life expectency in developed and developing countries of the world (An approach to available literature).* International Journal of Yoga, Physiotherapy and Physical Education, 1(1), 04-06. 
+
+- Lin, R.-T., Chen, Y.-M., Chien, L.-C., & Chan, C.-C. (2012). *Political and social determinants of life expectancy in less developed countries: a longitudinal study.* BMC Public Health, 12(1), 85. 
+
+- United Nations. (2017). *Life expectancy at birth increasing in less developed regions*, retrieved on 28 September, 2020 from https://www.un.org/en/development/desa/population/publications/pdf/popfacts/PopFacts_2017-9.pdf. 
